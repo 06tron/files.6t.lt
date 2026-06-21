@@ -18,19 +18,23 @@ menu#list-of-books > li:hover {
 	text-decoration: underline;
 }
 
-</style></head><body><main></main><details
+</style><!--<script
+id='mathjax'
+src='https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js'
+defer=''></script>--></head><body><h1></h1><main></main><details
 id='list-container'><summary>Menu</summary><nav><menu
 id='list-of-books'></menu></nav></details><script>
 
-MathJax = {};
+window.MathJax = {};
 
-</script><!--<script
-src='https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js'></script>--><script>
+const main = document.body.querySelector('main');
+let texHTML = '';
 
-const details = document.getElementById('list-container');
-const mq = matchMedia('screen and (width > 600px)');
-details.open = mq.matches;
-mq.addEventListener('change', e => details.open = e.matches);
+function insertTexHTML() {
+	MathJax.typesetClear?.([main]);
+	main.innerHTML = texHTML;
+	MathJax.typesetPromise?.([main]);
+}
 
 const books = new Map([
 	['?AD', 'Algorithm Design'],
@@ -40,19 +44,13 @@ const books = new Map([
 	['?ILO', 'Introduction to Linear Optimization']
 ]);
 
-let texHTML = '';
-const main = document.body.querySelector('main');
-
-function insertTexHTML() {
-	MathJax.typesetClear?.([main]);
-	main.innerHTML = texHTML;
-	MathJax.typesetPromise?.([main]);
-}
+const h1 = document.body.querySelector('h1');
 
 function loadExercises(bookID) {
 	if (!books.has(bookID)) {
 		bookID = '?GICT';
 	}
+	h1.textContent = books.get(bookID);
 	document.head.querySelector('script')?.remove();
 	const script = document.createElement('script');
 	script.src = `./${bookID.slice(1)}.js`;
@@ -61,7 +59,7 @@ function loadExercises(bookID) {
 	history.replaceState({}, '', bookID);
 }
 
-loadExercises(location.search);
+document.getElementById('mathjax').addEventListener('load', () => loadExercises(location.search));
 
 const menu = document.getElementById('list-of-books');
 for (const [bookID, bookTitle] of books) {
@@ -81,5 +79,10 @@ for (const [bookID, bookTitle] of books) {
 	});
 	menu.appendChild(li);
 }
+
+const details = document.getElementById('list-container');
+const mq = matchMedia('screen and (width > 600px)');
+details.open = mq.matches;
+mq.addEventListener('change', e => details.open = e.matches);
 
 </script></body></html>
