@@ -55,7 +55,7 @@ function loadExercises(bookID) {
 	}
 	document.head.querySelector('script')?.remove();
 	const script = document.createElement('script');
-	script.src = `./books/${bookID.slice(1)}.tex.js`;
+	script.src = `./${bookID.slice(1)}.js`;
 	script.addEventListener('load', insertTexHTML);
 	document.head.appendChild(script);
 	history.replaceState({}, '', bookID);
