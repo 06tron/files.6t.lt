@@ -1,30 +1,3 @@
-<!DOCTYPE
-html><html
-xmlns='http://www.w3.org/1999/xhtml'
-lang='en'><head><meta
-charset='utf-8'/><title>Textbook Exercises</title><meta
-name='author'
-content='https://orcid.org/0009-0001-0977-2029'/><meta
-name='color-scheme'
-content='light dark'/><meta
-name='viewport'
-content='width=device-width'/><style>
-
-menu#list-of-books > li > a {
-	text-decoration: none;
-}
-
-menu#list-of-books > li:hover {
-	text-decoration: underline;
-}
-
-</style><script
-id='mathjax'
-src='data:text/javascript,//https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js'
-defer=''></script></head><body><h1></h1><main></main><details
-id='list-container'><summary>Menu</summary><nav><menu
-id='list-of-books'></menu></nav></details><script>
-
 window.MathJax = {};
 
 const main = document.body.querySelector('main');
@@ -84,5 +57,3 @@ const details = document.getElementById('list-container');
 const mq = matchMedia('screen and (width > 600px)');
 details.open = mq.matches;
 mq.addEventListener('change', e => details.open = e.matches);
-
-</script></body></html>
