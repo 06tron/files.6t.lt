@@ -1,6 +1,6 @@
 #!/bin/bash
 
-extras=""
+extras=" --arg version $(jq --version)"
 
 if [ -f "src/$1.js" ]
 then

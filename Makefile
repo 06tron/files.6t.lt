@@ -1,5 +1,5 @@
-server/static/%.htm: src/%.jq.xml
-	./combine-src-xhtml.sh $* templates/htm.jq > $@
+server/static/%.htm: templates/htm.jq src/%.jq.xml
+	./combine-src-xhtml.sh $* $< > $@
 
-server/static/%.xht: src/%.jq.xml
-	./combine-src-xhtml.sh $* templates/xht.jq > $@
+server/static/%.xht: templates/xht.jq src/%.jq.xml
+	./combine-src-xhtml.sh $* $< > $@
